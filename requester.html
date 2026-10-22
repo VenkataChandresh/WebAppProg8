@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Computation Request</title>
+</head>
+<body>
+
+    <h1>Venkata Chandresh Adapa uses a fetch request</h1>
+
+    <label for="x">Enter X:</label>
+    <input type="number" id="x">
+
+    <br><br>
+
+    <label for="y">Enter Y:</label>
+    <input type="number" id="y">
+
+    <br><br>
+
+    <button onclick="invokeComputation()">
+        Invoke computation on Server
+    </button>
+
+    <div id="result"></div>
+
+    <script>
+        function invokeComputation() {
+            const x = document.getElementById("x").value;
+            const y = document.getElementById("y").value;
+
+            const url = `http://127.0.0.1:3001/?x=${x}&y=${y}`;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById("result").textContent = text;
+                })
+                .catch(error => {
+                    document.getElementById("result").textContent =
+                        "Error: " + error.message;
+                });
+        }
+    </script>
+
+</body>
+</html>

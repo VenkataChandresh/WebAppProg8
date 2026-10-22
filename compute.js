@@ -9,6 +9,7 @@ const server =
     (req,res)=> {               //Anonymous function to handle the request
       console.log("Request recieved")
       console.log(req.url)
+      res.setHeader('Access-Control-Allow-Origin', '*')
       // Build a fake url so we can get the search parameters using a URL object
       fake_url = "https://fake.com/path" + req.url
       const url = new URL(fake_url)
